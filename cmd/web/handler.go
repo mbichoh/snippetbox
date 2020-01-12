@@ -13,8 +13,15 @@ func home(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
+
+	//slice of paths
+	files := []string{
+		"./ui/html/home.page.tmpl",
+		"./ui/html/base.layout.tmpl",
+	}
+
 	//check if the url relative path is present
-	ts, err := template.ParseFiles("./ui/html/home.page.tmpl")
+	ts, err := template.ParseFiles(files...)
 	if err != nil {
 		log.Println(err.Error)
 		http.Error(w, "Internal server error", 500)
